@@ -1,0 +1,16 @@
+---
+const { data } = Astro.props;
+---
+
+<section class="productList">
+  <article class="smallProduct" product.soldout ? "sold-out_container">
+    <img
+      src=`https://kea-alt-del.dk/t7/images/webp/640/${data.id}.webp`
+      alt="trøje"
+    />
+    <p>{data.productdisplayname}<br />DKK {data.price},-</p>
+
+    <a class="read_more" href="product.html">Gå til produkt</a>
+    {data.discount && <span class="tilbud">{data.discount}%</span>}
+  </article>
+</section>
