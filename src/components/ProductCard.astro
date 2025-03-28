@@ -8,13 +8,25 @@ const { data } = Astro.props;
       src=`https://kea-alt-del.dk/t7/images/webp/640/${data.id}.webp`
       alt="trøje"
     />
-    <p>{data.productdisplayname}</p>
-    <p>DKK {data.price} <span class={data.discount && "onsale"}></span>,-</p>
+    <h3>
+      {data.productdisplayname}
+    </h3>
+    <p>DKK <span class={data.discount && "onsale"}>{data.price}</span>,-</p>
+    {
+      data.discount && (
+        <p>
+          Now DKK {Math.round(data.price - (data.price * data.discount) / 100)}
+        </p>
+      )
+    }
+    <a class="read_more" href={`../product/${data.id}`}>Gå til produkt</a>
 
-    {data.discount && 
-    <p>Now DKK {Math.round (data.price - data.price * data.dicount / 100)}</p>
-    <span class="tilbud">{data.discount}%</span>}
-    
-  <a class="read_more" href="product.html">Gå til produkt</a>
+    {data.discount && <span class="tilbud">{data.discount}%</span>}
   </article>
 </section>
+
+<style>
+  .onsale {
+    text-decoration: line-through;
+  }
+</style>
